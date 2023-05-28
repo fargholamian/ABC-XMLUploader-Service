@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class AuthenticationService {
 
-  Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+  Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
   @Value("${authentication.get.user.uri}")
   private String getUserUri;
