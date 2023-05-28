@@ -1,5 +1,8 @@
 package com.tradedoubler.xmluploaderservice.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tradedoubler.xmluploaderservice.entity.Event;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +15,8 @@ public class EventProducer {
     this.kafkaTemplate = kafkaTemplate;
   }
 
-  public void sendEvent(String event) {
-    kafkaTemplate.send("topic-name", event);
+  public void sendEvent(Event event) throws JsonProcessingException {
+    ObjectMapper mapper = new ObjectMapper();
+    kafkaTemplate.send("file-received-event", mapper.writeValueAsString(event));
   }
 }

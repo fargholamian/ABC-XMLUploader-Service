@@ -1,0 +1,26 @@
+upload:
+  directory: /Users/farzad/Documents/MyProjects/upload-files
+authentication:
+  get:
+    user:
+      uri: http://127.0.0.1:9000/api/user/
+logging:
+  level:
+    root: debug
+
+server:
+  ssl:
+    enabled: false
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
+      max-file-size: -1
+      max-request-size: -1
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
