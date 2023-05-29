@@ -1,16 +1,16 @@
+server:
+  port: 8082
+  ssl:
+    enabled: false
 upload:
   directory: /Users/farzad/Documents/MyProjects/upload-files
 authentication:
   get:
     user:
-      uri: http://127.0.0.1:9000/api/user/
+      uri: http://127.0.0.1:8081/api/user/
 logging:
   level:
-    root: debug
-
-server:
-  ssl:
-    enabled: false
+    root: info
 
 spring:
   servlet:
@@ -21,6 +21,26 @@ spring:
       max-request-size: -1
   kafka:
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: localhost:29092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  kafka:
+    producer:
+      bootstrap-servers: kafka:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+upload:
+  directory: /var/upload
+authentication:
+  get:
+    user:
+      uri: http://authentication-service:8080/api/user/
+logging:
+  level:
+    root: error
