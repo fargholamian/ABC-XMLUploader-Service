@@ -2,7 +2,7 @@ package com.tradedoubler.xmluploaderservice.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tradedoubler.xmluploaderservice.entity.Event;
+import com.tradedoubler.xmluploaderservice.model.Event;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 

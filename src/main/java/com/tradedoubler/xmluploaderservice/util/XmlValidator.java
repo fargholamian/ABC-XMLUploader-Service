@@ -1,7 +1,5 @@
 package com.tradedoubler.xmluploaderservice.util;
 
-import com.tradedoubler.xmluploaderservice.controller.FileUploadController;
-import java.io.File;
 import java.io.InputStream;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
@@ -12,19 +10,19 @@ import javax.xml.validation.Validator;
 import javax.xml.transform.stax.StAXSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.Resource;
 
 public class XmlValidator {
   private final static Logger logger = LoggerFactory.getLogger(XmlValidator.class);
 
-  public static Boolean validateXml(InputStream inputStream) {
+  public static Boolean validateXml(InputStream inputStream, Resource xsdFileResource) {
     try {
       XMLInputFactory inputFactory = XMLInputFactory.newInstance();
       XMLStreamReader reader = inputFactory.createXMLStreamReader(inputStream);
 
       SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
 
-      Schema schema = schemaFactory.newSchema(new StreamSource(new File(
-          FileUploadController.class.getClassLoader().getResource("files/Sample0.xsd").getFile())));
+      Schema schema = schemaFactory.newSchema(new StreamSource(xsdFileResource.getFile()));
 
       Validator validator = schema.newValidator();
 

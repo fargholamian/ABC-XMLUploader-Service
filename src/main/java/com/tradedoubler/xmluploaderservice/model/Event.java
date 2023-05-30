@@ -1,4 +1,4 @@
-package com.tradedoubler.xmluploaderservice.entity;
+package com.tradedoubler.xmluploaderservice.model;
 
 import java.util.UUID;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.tradedoubler.xmluploaderservice.entity;
+package com.tradedoubler.xmluploaderservice.model;
 
 import com.tradedoubler.xmluploaderservice.enums.Role;
 import jakarta.persistence.EnumType;

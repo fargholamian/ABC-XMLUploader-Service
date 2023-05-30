@@ -1,6 +1,6 @@
 package com.tradedoubler.xmluploaderservice.configuration;
 
-import com.tradedoubler.xmluploaderservice.entity.User;
+import com.tradedoubler.xmluploaderservice.model.User;
 import com.tradedoubler.xmluploaderservice.enums.Role;
 import com.tradedoubler.xmluploaderservice.service.AuthenticationService;
 import io.micrometer.common.util.StringUtils;
