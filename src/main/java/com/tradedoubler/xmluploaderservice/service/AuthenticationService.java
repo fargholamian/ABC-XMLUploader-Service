@@ -20,7 +20,8 @@ public class AuthenticationService {
 
   Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
-  private RestTemplate restTemplate = new RestTemplate();
+  @Autowired
+  private RestTemplate restTemplate;
 
   @Autowired
   private AppConfig appConfig;

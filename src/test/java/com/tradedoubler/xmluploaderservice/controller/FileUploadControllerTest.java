@@ -37,16 +37,12 @@ public class FileUploadControllerTest {
   @MockBean
   private EventProducer eventProducer;
 
+  private final User user = new User(UUID.randomUUID(), "user", "password" , Role.ROLE_USER);
+
+  private final  MockMultipartFile file = new MockMultipartFile("file", "test.txt", MediaType.MULTIPART_FORM_DATA_VALUE, "<result></result>".getBytes());
+
   @Test
   public void shouldUploadAPIReturn200_WhenXmlIsValidAndFileIsStoredSuccessfully() throws Exception {
-    MockMultipartFile file = new MockMultipartFile(
-        "file",
-        "test.txt",
-        MediaType.MULTIPART_FORM_DATA_VALUE,
-        "<result></result>".getBytes());
-
-    User user = new User(UUID.randomUUID(), "t", "t" , Role.ROLE_USER);
-
     when(interceptor.preHandle(any(), any(), any())).thenReturn(true);
     when(xmlService.validate(any())).thenReturn(Boolean.TRUE);
     when(xmlService.store(any())).thenReturn("filename");
@@ -66,14 +62,6 @@ public class FileUploadControllerTest {
 
   @Test
   public void shouldUploadAPIReturn500_WhenXmlIsNotValid() throws Exception {
-    MockMultipartFile file = new MockMultipartFile(
-        "file",
-        "test.txt",
-        MediaType.MULTIPART_FORM_DATA_VALUE,
-        "<result></result>".getBytes());
-
-    User user = new User(UUID.randomUUID(), "t", "t" , Role.ROLE_USER);
-
     when(interceptor.preHandle(any(), any(), any())).thenReturn(true);
     when(xmlService.validate(any())).thenReturn(Boolean.FALSE);
 
@@ -89,14 +77,6 @@ public class FileUploadControllerTest {
 
   @Test
   public void shouldUploadAPIReturn500_WhenXmlIsValidButStoringFailed() throws Exception {
-    MockMultipartFile file = new MockMultipartFile(
-        "file",
-        "test.txt",
-        MediaType.MULTIPART_FORM_DATA_VALUE,
-        "<result></result>".getBytes());
-
-    User user = new User(UUID.randomUUID(), "t", "t" , Role.ROLE_USER);
-
     when(interceptor.preHandle(any(), any(), any())).thenReturn(true);
     when(xmlService.validate(any())).thenReturn(Boolean.TRUE);
     when(xmlService.store(any())).thenThrow(new RuntimeException("Something went wrong when storing xml file"));
